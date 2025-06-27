@@ -1,0 +1,124 @@
+# Nexus v2.0 Environment Variables Configuration
+# Session String Authentication Only - No Phone Numbers Required
+
+# ================================
+# REQUIRED VARIABLES
+# ================================
+
+# Telegram API Credentials (Required)
+# Get these from https://my.telegram.org/apps
+API_ID=12345678
+API_HASH=abcd1234567890abcd1234567890abcd
+
+# Session String Authentication (Required)
+# Generate using: python generate_session.py
+# This replaces phone number authentication completely
+SESSION_STRING=BQANaKIAAupz1Xz2yJ...your_session_string_here...
+
+# ================================
+# AUTO-GENERATED VARIABLES
+# ================================
+# These will be automatically created during first run
+# You can leave them empty for auto-setup
+
+# Assistant Bot Configuration
+BOT_TOKEN=              # Auto-generated via BotFather
+BOT_USERNAME=           # Auto-set when bot is created
+LOG_GROUP_ID=           # Auto-created log group ID
+
+# ================================
+# OPTIONAL CONFIGURATION
+# ================================
+
+# Owner Information
+OWNER_NAME=Nexus User
+OWNER_USERNAME=         # Your username without @
+
+# Bot Customization
+BOT_NAME=Nexus v2.0
+COMMAND_PREFIX=.        # Userbot command prefix
+ASSISTANT_PREFIX=/      # Assistant bot command prefix
+
+# Security & Privacy
+PM_PERMIT=True          # Enable PM protection
+PM_LOG=True             # Log private messages
+ANTI_SPAM=True          # Enable anti-spam protection
+LOG_ERRORS=True         # Log errors to group
+
+# Plugin System
+LOAD_PLUGINS=True       # Auto-load plugins
+PLUGIN_CHANNEL=         # Channel for plugin updates
+
+# Advanced Settings
+MAX_MESSAGE_LENGTH=4096
+DOWNLOAD_DIRECTORY=./downloads
+
+# Database (Optional)
+DATABASE_URL=           # PostgreSQL/SQLite URL
+REDIS_URL=              # Redis connection URL
+
+# Deployment (Platform-specific)
+HEROKU_APP_NAME=        # For Heroku deployment
+HEROKU_API_KEY=         # For Heroku management
+
+# ================================
+# DEPLOYMENT EXAMPLES
+# ================================
+
+# Heroku:
+# heroku config:set API_ID=12345678
+# heroku config:set API_HASH=your_api_hash
+# heroku config:set SESSION_STRING=your_session_string
+
+# Railway:
+# Add variables in Railway dashboard
+# No special configuration needed
+
+# Render:
+# Set in environment variables section
+# Use render.yaml for automated deployment
+
+# Koyeb:
+# Configure in service environment variables
+# Use koyeb.yaml for GitOps deployment
+
+# VPS/Local:
+# Create .env file with these variables
+# Or export as system environment variables
+
+# ================================
+# SECURITY NOTES
+# ================================
+
+# 1. Session String Security:
+#    - Keep session string private and secure
+#    - Never share in public repositories
+#    - Regenerate if compromised
+#    - Use environment variables in production
+
+# 2. API Credentials:
+#    - Get from official Telegram API portal
+#    - Never hardcode in source code
+#    - Rotate periodically for security
+
+# 3. Bot Token:
+#    - Generated automatically by Nexus
+#    - Can be manually set if preferred
+#    - Stored securely in environment
+
+# ================================
+# MIGRATION FROM PHONE AUTH
+# ================================
+
+# If migrating from phone number authentication:
+# 1. Generate session string: python generate_session.py
+# 2. Remove PHONE_NUMBER environment variable
+# 3. Add SESSION_STRING environment variable
+# 4. Redeploy your application
+# 5. Verify bot starts successfully
+
+# Session string benefits:
+# - No phone verification needed
+# - Faster deployment process  
+# - Better security for cloud platforms
+# - No interruptions from phone verification

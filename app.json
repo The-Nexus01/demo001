@@ -1,0 +1,112 @@
+{
+  "name": "Nexus v2.0 - Advanced Telegram Userbot",
+  "description": "A sophisticated Telegram userbot with session string authentication only. Features hybrid bot architecture, plugin system, and automation tools.",
+  "keywords": [
+    "telegram",
+    "userbot", 
+    "pyrogram",
+    "session-string",
+    "automation",
+    "nexus"
+  ],
+  "repository": "https://github.com/The-Nexus-Bot/Nexus-Userbot",
+  "website": "https://github.com/The-Nexus-Bot/Nexus-Userbot",
+  "env": {
+    "API_ID": {
+      "description": "Your Telegram API ID from https://my.telegram.org",
+      "value": "",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Your Telegram API Hash from https://my.telegram.org", 
+      "value": "",
+      "required": true
+    },
+    "SESSION_STRING": {
+      "description": "Pyrogram session string - Generate using generate_session.py (Required for authentication)",
+      "value": "",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Assistant bot token (Optional - will be auto-generated if not provided)",
+      "value": "",
+      "required": false
+    },
+    "LOG_GROUP_ID": {
+      "description": "Log group chat ID (Optional - will be auto-created if not provided)",
+      "value": "",
+      "required": false
+    },
+    "OWNER_NAME": {
+      "description": "Your name for bot displays",
+      "value": "Nexus User",
+      "required": false
+    },
+    "OWNER_USERNAME": {
+      "description": "Your Telegram username (without @)",
+      "value": "",
+      "required": false
+    },
+    "BOT_NAME": {
+      "description": "Custom name for your bot",
+      "value": "Nexus v2.0",
+      "required": false
+    },
+    "COMMAND_PREFIX": {
+      "description": "Command prefix for userbot commands",
+      "value": ".",
+      "required": false
+    },
+    "ASSISTANT_PREFIX": {
+      "description": "Command prefix for assistant bot",
+      "value": "/",
+      "required": false
+    },
+    "PM_PERMIT": {
+      "description": "Enable PM protection (True/False)",
+      "value": "True",
+      "required": false
+    },
+    "PM_LOG": {
+      "description": "Log private messages (True/False)",
+      "value": "True", 
+      "required": false
+    },
+    "ANTI_SPAM": {
+      "description": "Enable anti-spam protection (True/False)",
+      "value": "True",
+      "required": false
+    },
+    "LOG_ERRORS": {
+      "description": "Log errors to log group (True/False)",
+      "value": "True",
+      "required": false
+    },
+    "LOAD_PLUGINS": {
+      "description": "Auto-load plugins on startup (True/False)",
+      "value": "True",
+      "required": false
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "stack": "heroku-22",
+  "scripts": {
+    "postdeploy": "echo 'Nexus v2.0 deployed successfully! Check logs for startup status.'"
+  },
+  "addons": [],
+  "environments": {
+    "test": {},
+    "staging": {},
+    "production": {}
+  }
+}

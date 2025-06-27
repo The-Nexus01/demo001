@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  nexus-userbot:
+    build: .
+    container_name: nexus-userbot
+    restart: unless-stopped
+    
+    # Environment variables - Configure these for your deployment
+    environment:
+      # Required Configuration
+      - API_ID=${API_ID}
+      - API_HASH=${API_HASH}
+      - SESSION_STRING=${SESSION_STRING}
+      
+      # Optional Configuration
+      - BOT_TOKEN=${BOT_TOKEN:-}
+      - LOG_GROUP_ID=${LOG_GROUP_ID:-}
+      - OWNER_NAME=${OWNER_NAME:-Nexus User}
+      - OWNER_USERNAME=${OWNER_USERNAME:-}
+      - BOT_NAME=${BOT_NAME:-Nexus v2.0}
+      - COMMAND_PREFIX=${COMMAND_PREFIX:-.}
+      - ASSISTANT_PREFIX=${ASSISTANT_PREFIX:-/}
+      
+      # Feature Toggles
+      - PM_PERMIT=${PM_PERMIT:-True}
+      - PM_LOG=${PM_LOG:-True}
+      - ANTI_SPAM=${ANTI_SPAM:-True}
+      - LOG_ERRORS=${LOG_ERRORS:-True}
+      - LOAD_PLUGINS=${LOAD_PLUGINS:-True}
+      
+      # Python Configuration
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+    
+    # Volume mounts for persistent data
+    volumes:
+      - ./logs:/app/logs
+      - ./downloads:/app/downloads
+      - ./assets:/app/assets
+    
+    # Network configuration
+    networks:
+      - nexus-network
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+        reservations:
+          memory: 256M
+          cpus: '0.5'
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Optional: Add a database service for advanced features
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: nexus-postgres
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_DB: nexus
+  #     POSTGRES_USER: nexus
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nexus123}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - nexus-network
+  #   ports:
+  #     - "5432:5432"
+
+  # Optional: Add Redis for caching
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: nexus-redis
+  #   restart: unless-stopped
+  #   command: redis-server --appendonly yes
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - nexus-network
+  #   ports:
+  #     - "6379:6379"
+
+networks:
+  nexus-network:
+    driver: bridge
+
+# Uncomment if using optional services
+# volumes:
+#   postgres_data:
+#   redis_data:

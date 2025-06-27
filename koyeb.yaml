@@ -1,0 +1,74 @@
+app:
+  name: nexus-userbot
+  services:
+    - name: nexus-userbot
+      git:
+        repository: github.com/The-Nexus-Bot/Nexus-Userbot
+        branch: main
+      instance_type: nano
+      env:
+        # Required - Telegram API credentials
+        - key: API_ID
+          value: ""  # Get from https://my.telegram.org
+        - key: API_HASH 
+          value: ""  # Get from https://my.telegram.org
+        - key: SESSION_STRING
+          value: ""  # Generate using generate_session.py (REQUIRED)
+        
+        # Optional - Auto-generated if not provided
+        - key: BOT_TOKEN
+          value: ""  # Assistant bot token (optional)
+        - key: LOG_GROUP_ID
+          value: ""  # Log group ID (optional)
+        
+        # Optional - Bot configuration
+        - key: OWNER_NAME
+          value: "Nexus User"
+        - key: OWNER_USERNAME
+          value: ""
+        - key: BOT_NAME
+          value: "Nexus v2.0"
+        - key: COMMAND_PREFIX
+          value: "."
+        - key: ASSISTANT_PREFIX
+          value: "/"
+        
+        # Optional - Feature toggles
+        - key: PM_PERMIT
+          value: "True"
+        - key: PM_LOG
+          value: "True"
+        - key: ANTI_SPAM
+          value: "True"
+        - key: LOG_ERRORS
+          value: "True"
+        - key: LOAD_PLUGINS
+          value: "True"
+          
+      build:
+        buildpack: python
+        run_command: python main.py
+      
+      # Health check
+      health_check:
+        http:
+          path: /
+        grace_period: 300s
+        interval: 30s
+        timeout: 10s
+        retries: 3
+
+# Deployment Instructions:
+# 1. Fork this repository to your GitHub account
+# 2. Generate session string using: python generate_session.py
+# 3. Set environment variables in Koyeb dashboard:
+#    - API_ID: From https://my.telegram.org
+#    - API_HASH: From https://my.telegram.org  
+#    - SESSION_STRING: Generated session string (REQUIRED)
+# 4. Deploy and enjoy your Nexus userbot!
+#
+# Session String Benefits:
+# - No phone number required in production
+# - More secure for cloud deployments
+# - Faster authentication process
+# - Better for automation workflows

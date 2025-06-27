@@ -1,0 +1,73 @@
+services:
+  - type: worker
+    name: nexus-userbot
+    env: python
+    plan: starter
+    buildCommand: "pip install -r requirements-build.txt"
+    startCommand: "python main.py"
+    envVars:
+      # Required Configuration - Get from https://my.telegram.org
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      # Session String - Generate using generate_session.py (REQUIRED)
+      - key: SESSION_STRING
+        sync: false
+      
+      # Auto-generated (Optional - leave empty for auto-setup)
+      - key: BOT_TOKEN
+        sync: false
+      - key: LOG_GROUP_ID
+        sync: false
+      
+      # Bot Configuration (Optional)
+      - key: OWNER_NAME
+        value: "Nexus User"
+      - key: OWNER_USERNAME
+        sync: false
+      - key: BOT_NAME
+        value: "Nexus v2.0"
+      - key: COMMAND_PREFIX
+        value: "."
+      - key: ASSISTANT_PREFIX
+        value: "/"
+      
+      # Feature Toggles (Optional)
+      - key: PM_PERMIT
+        value: "True"
+      - key: PM_LOG
+        value: "True"
+      - key: ANTI_SPAM
+        value: "True"
+      - key: LOG_ERRORS
+        value: "True"
+      - key: LOAD_PLUGINS
+        value: "True"
+        
+      # Python Configuration
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PYTHONDONTWRITEBYTECODE
+        value: "1"
+        
+    autoDeploy: false
+    
+# Nexus v2.0 Render Deployment Configuration
+# Session String Authentication Only - No Phone Numbers Required
+#
+# Setup Instructions:
+# 1. Generate session string locally: python generate_session.py
+# 2. Get API credentials from https://my.telegram.org
+# 3. Set environment variables in Render dashboard:
+#    - API_ID: Your Telegram API ID
+#    - API_HASH: Your Telegram API Hash
+#    - SESSION_STRING: Generated session string (REQUIRED)
+# 4. Deploy and enjoy your Nexus userbot!
+#
+# Session String Benefits:
+# - No phone number verification required
+# - Secure authentication for cloud platforms
+# - Faster deployment process
+# - Better for automation workflows
+# - No interactive authentication needed

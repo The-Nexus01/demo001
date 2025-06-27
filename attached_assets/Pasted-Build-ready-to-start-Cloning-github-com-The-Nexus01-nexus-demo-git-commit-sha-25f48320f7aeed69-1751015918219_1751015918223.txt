@@ -1,0 +1,69 @@
+Build ready to start ▶️
+>> Cloning github.com/The-Nexus01/nexus-demo.git commit sha 25f48320f7aeed69c9a5f7acaddb4a00e6286231 into /builder/workspace
+Initialized empty Git repository in /builder/workspace/.git/
+From https://github.com/The-Nexus01/nexus-demo
+ * branch            25f48320f7aeed69c9a5f7acaddb4a00e6286231 -> FETCH_HEAD
+HEAD is now at 25f4832 Create README.md
+Starting Docker daemon...
+Waiting for the Docker daemon to start...
+done
+Timer: Analyzer started at 2025-06-27T09:13:44Z
+Image with name "registry01.prod.koyeb.com/k-228252a4-a190-4f13-984b-12f29e3d15a8/16a05302-c4ff-42c3-8733-8abbccec3392" not found
+Timer: Analyzer ran for 579.546423ms and ended at 2025-06-27T09:13:44Z
+Timer: Detector started at 2025-06-27T09:13:45Z
+1 of 2 buildpacks participating
+heroku/python 0.0.0
+Timer: Detector ran for 28.618314ms and ended at 2025-06-27T09:13:45Z
+Timer: Restorer started at 2025-06-27T09:13:46Z
+Layer cache not found
+Timer: Restorer ran for 597.215093ms and ended at 2025-06-27T09:13:46Z
+Timer: Builder started at 2025-06-27T09:13:47Z
+-----> CNB Shim: Running bin/compile
+
+[1;31m !     Error: Couldn't find any supported Python package manager files.[0m
+[1;31m !     [0m
+[1;31m !     A Python app on Heroku must have either a 'requirements.txt',[0m
+[1;31m !     'Pipfile', 'poetry.lock' or 'uv.lock' package manager file in[0m
+[1;31m !     the root directory of its source code.[0m
+[1;31m !     [0m
+[1;31m !     Currently the root directory of your app contains:[0m
+[1;31m !     [0m
+[1;31m !     app.json[0m
+[1;31m !     bot/[0m
+[1;31m !     config.py[0m
+[1;31m !     dependencies.txt[0m
+[1;31m !     ENV_VARIABLES.txt[0m
+[1;31m !     generate_session.py[0m
+[1;31m !     .git/[0m
+[1;31m !     koyeb.yaml[0m
+[1;31m !     main.py[0m
+[1;31m !     pyproject.toml[0m
+[1;31m !     README.md[0m
+[1;31m !     render.yaml[0m
+[1;31m !     replit.md[0m
+[1;31m !     SESSION_GUIDE.md[0m
+[1;31m !     utils/[0m
+[1;31m !     [0m
+[1;31m !     If your app already has a package manager file, check that it:[0m
+[1;31m !     [0m
+[1;31m !     1. Is in the top level directory (not a subdirectory).[0m
+[1;31m !     2. Has the correct spelling (the filenames are case-sensitive).[0m
+[1;31m !     3. Isn't listed in '.gitignore' or '.slugignore'.[0m
+[1;31m !     4. Has been added to the Git repository using 'git add --all'[0m
+[1;31m !        and then committed using 'git commit'.[0m
+[1;31m !     [0m
+[1;31m !     Otherwise, add a package manager file to your app. If your app has[0m
+[1;31m !     no dependencies, then create an empty 'requirements.txt' file.[0m
+[1;31m !     [0m
+[1;31m !     If you aren't sure which package manager to use, we recommend[0m
+[1;31m !     trying uv, since it supports lockfiles, is extremely fast, and[0m
+[1;31m !     is actively maintained by a full-time team:[0m
+[1;31m !     https://docs.astral.sh/uv/[0m
+[1;31m !     [0m
+[1;31m !     For help with using Python on Heroku, see:[0m
+[1;31m !     https://devcenter.heroku.com/articles/getting-started-with-python[0m
+[1;31m !     https://devcenter.heroku.com/articles/python-support[0m
+
+Timer: Builder ran for 650.099025ms and ended at 2025-06-27T09:13:48Z
+[31;1mERROR: [0mfailed to build: exit status 1
+Build failed ❌
